@@ -1,0 +1,103 @@
+.header{
+    z-index: 1;
+    height: 95vh;
+    position: relative;
+
+    // Default small jpg  
+    background-image: linear-gradient(
+            to  right bottom,
+            rgba($color-tertiary-light, 0.5),
+            rgba($color-tertiary-dark, 0.3)),
+        url(../img/hero-small.jpg);
+
+    background-blend-mode: screen;
+    /* whatever viewport changed, img always try to fit the screen; */
+    background-size: cover;
+    /* decide which part of img will be cropped out when viewport changing. */
+    background-position: top ;
+
+    // 其他地方的background还没换，留做练习。我就不练了，弄新图麻烦
+    // 高分屏并且宽度大于600px，使用大图
+    // safari:DPR>=2并且宽度大于600px，使用大图
+    // 宽度大于2000px的大屏，使用大图
+    @media only screen and (min-resolution:192dpi) and (min-width:37.5em),
+           only screen and (-webkit-min-device-pixel-radio:2) and (min-width:37.5em),
+           only screen and (min-width:125em){
+        background-image: linear-gradient(
+            to  right bottom,
+            rgba($color-tertiary-light, 0.5),
+            rgba($color-tertiary-dark, 0.3)),
+        url(../img/hero.jpg);
+    }
+  
+    // 宽度小于600px的手机屏幕，使用手机专用配图。
+    @media (max-width:37.5em) {
+        background-image: linear-gradient(
+            to  right bottom,
+            rgba($color-tertiary-light, 0.5),
+            rgba($color-tertiary-dark, 0.3)),
+        url(../img/hero-small-phone.jpg);
+    }
+
+
+    clip-path: polygon(0 0,100% 0,100% 75vh,0 100%);
+    -webkit-clip-path: polygon(0 0,100% 0,100% 75vh,0 100%);
+
+    @include respond(tab-port){
+        clip-path: polygon(0 0,100% 0,100% 80vh,0 100%);
+        -webkit-clip-path: polygon(0 0,100% 0,100% 80vh,0 100%);
+    }
+    @include respond(phone){
+        clip-path: polygon(0 0,100% 0,100% 85vh,0 100%);
+        -webkit-clip-path: polygon(0 0,100% 0,100% 85vh,0 100%);
+    }
+            
+    &__logo-box{
+        position: absolute;
+        top:4rem;
+        left: 4rem;        
+        background-color: gainsboro;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+
+        overflow: hidden;
+        text-align: center;        
+    }
+    &__logo{
+        width:auto;
+        height: 10rem;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+        transition-duration: 2s;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    &__logo:hover{
+        transform: translate(-50%,-50%) rotate(3600deg);
+    }
+    &__text-box{
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        /* 给予自身的位置进行变换 */
+        transform: translate(-50%,-50%);
+        text-align: center;
+
+        @include respond(phone){
+            top: 45%;
+            left: 50%;
+        }
+
+        .like{
+            display: block;
+            width: 30rem;
+            margin: 0 auto;
+            animation: moveInRight 3s cubic-bezier(0.23, 1, 0.320, 1) ;
+            filter: grayscale(.5);
+        }
+    }
+}

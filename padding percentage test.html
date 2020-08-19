@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>test
+        </title>
+
+        <style>
+            .parentDiv{
+                background-color: yellow;
+                width: 800px;
+                height: 50vh;
+            }
+            .childDiv{
+                background-color: green;
+                width: 500px;
+                padding: 10%;
+                margin: 20%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+        测试padding是基于自己元素的length，
+        还是基于parent element 的length。
+    </h1>  
+    <div class="parentDiv">
+
+        <div class="childDiv">
+经过测试，子元素的padding和margin百分比计算的基数都是父元素的宽高，
+既不会继承父元素的padding，也不会按照本元素的length百分比计算pixel。
+
+em单位用于font-size或者length，em和rem都基于font，
+em的reference对象是父元素或者本元素，rem则基于root元素。
+        </div>
+
+    </div>
+
+</body>
+</html>

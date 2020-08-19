@@ -1,0 +1,166 @@
+.popup{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+
+    min-width: 1400px;
+
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .3s;
+
+    // 如果浏览器支持某属性，则：
+    //比如，现在ChromeV80支持backdrop-filter，Firefox不支持，那么效果不同。
+    background-color: rgba($color-grey-dark,.8);
+    @supports (backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px)){
+        -webkit-backdrop-filter: sepia(20%) blur(2px);
+        backdrop-filter: sepia(20%) blur(2px);
+        background-color: rgba($color-grey-dark,.2);
+    }
+   
+
+    z-index: 9999;
+
+    &__content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(.5); 
+        
+        opacity: 0;
+        visibility: hidden;
+
+        transition: all .2s cubic-bezier(0.68, -0.85, 0.265, 1.55);
+
+        display: table;
+        width: 70%;
+        background-color: $color-grey-light-1;
+        box-shadow: 0 1.5rem 2rem rgba($color-black,.5);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    &__pictures{
+        display: table-cell;
+        width:33.33333%;
+        vertical-align: middle;
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+            // height: 100%;
+            // background-size: cover;
+            // background-position: top;
+        }
+
+    }
+
+    &__textbox{
+        display: table-cell;
+        vertical-align: middle;
+        width:66.66667%;
+        padding: 2rem 4rem;
+    }
+
+    &__text{
+        text-align:justify;
+
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        -moz-column-count: 2;
+        -moz-column-gap: 5rem;
+        -moz-column-rule: 1px solid $color-grey-dark-2;
+        column-count: 2;
+        column-gap: 5rem;
+        column-rule: 1px solid $color-grey-dark-2;
+
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+
+    }
+
+
+    &__close{
+        
+        &:link,
+        &:visited{
+            color:  $color-grey-dark;
+
+            display: inline-block;
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem; 
+    
+            font-size: 4rem;
+            line-height: .7;
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        &:hover{
+            color: $color-primary;
+        }
+    }
+
+    &:target{
+        opacity: 1;
+        visibility: visible;
+    }
+    &:target &__content{
+        transform: translate(-50%,-50%) scale(1); 
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @include respond(tab-land){
+        min-width: 0;
+
+        &__content{
+            display: block;
+            width: 90%;
+        }
+
+        &__pictures{
+            display:none;
+            width:100%;
+            // @include respond
+            height: 25rem;
+            text-align: center;
+            background-color: $color-primary;
+            img{
+                display: inline-block;
+                width:49%;
+            }
+        }
+
+        &__textbox{
+            display:inline-block;
+            width:100%;
+            padding: 2rem 4rem;
+            text-align: center;
+            h2{
+                display: inline-block;
+                width: 100%;
+            }
+            h3{
+                display: none;
+            }
+        }
+
+        &__text{
+            display: none;
+
+            @include respond(phone){
+                display: inline-block;
+            }
+        }
+    }
+
+
+}

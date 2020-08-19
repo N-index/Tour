@@ -1,0 +1,238 @@
+.navigation{
+   
+  
+
+    &__checkbox{
+        display: none;
+    }
+
+    &__button{
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+
+        @include respond(tab-port){
+            height: 5rem;
+            width: 5rem;
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+        @include respond(phone){
+            height: 5rem;
+            width: 5rem;
+            top: 3.5rem;
+            right: 3.5rem;
+        }
+
+        box-shadow: 0 1rem 3rem rgba($color-black,.3);
+        cursor: pointer;
+        transition: all .2s ;
+
+
+        //icon居中
+        text-align: center;
+
+        &:hover{
+            // background-color: $color-grey-light-2;
+        }
+
+
+        // 为啥放到button里的选择器就没用呢。我写的很好啊。
+        // soga,&__icon渲染出来就是.navigation__button__icon
+        // &:hover &__icon{
+        //     &::before{
+        //         top: -1rem;
+        //     }
+        //     &::after{
+        //         top: 1rem;
+        //     }
+        // }
+    }
+
+    &__background{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-image: radial-gradient($color-grey-dark-2,$color-tertiary-light);
+
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+
+
+        @include respond(tab-port){
+            height: 3rem;
+            width: 3rem;
+            top: 5rem;
+            right: 5rem;
+        }
+        @include respond(phone){
+            height: 3rem;
+            width: 3rem;
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+
+        z-index: 1000;
+        // box-shadow: 1.5rem 2rem 3rem rgba($color-black,.4);
+
+        // 初始隐藏背景
+        // transform: scale(80);
+        transition: all .5s ;
+
+
+    }
+      
+    &__nav{
+        height: 100vh;
+        // width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1500;
+        // background-color: blue;
+
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        overflow: hidden;
+
+        transition: all .2s cubic-bezier(.64,-0.47,.22,1.41);
+
+    }
+
+    &__list{
+        list-style: none;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+
+        width: 100%;
+    }
+
+    &__item{
+        margin: 1rem;
+    }
+
+    &__link{
+
+        &:link,
+        &:visited{
+            display: inline-block;
+
+            padding: 1rem 2rem;
+            font-size: 3rem;
+            font-weight: 700;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+    
+            background-image: linear-gradient(120deg,transparent 0%, transparent 50%,$color-yellow 50%);
+            background-size: 250%;
+
+            transition: all .4s;
+        }
+
+        &:hover,
+        &:active{
+            background-position: 100%;
+            // color: transparent;
+            transform: translateX(1rem);
+        }
+
+        span{
+            display: inline-block;
+            margin-right: 1.5rem;
+        }
+ 
+    }
+
+
+    // funcitonality
+    &__checkbox:checked ~ &__background {
+        transform: scale(80);
+    }
+    &__checkbox:checked ~ &__nav {
+        visibility: visible;
+        opacity: 1;
+        // 随着nav的宽度伸长到100%，内部元素也跟着【从左到右】出现
+        width: 100%;
+    }
+
+    &__checkbox:checked ~ &__button &__icon {
+
+        &{
+            // 这个好玩，before和after的基准点变了，所以左定位都变了。
+            // width: 0;
+            // height: 0;
+
+            // opacity伪类也会变透明。
+            // opacity: 0;
+
+            //颜色只对本体生效。
+            background-color: transparent;
+        }
+
+        &::before{
+            transform:  rotate(135deg);
+            top: 0;
+        }
+
+        &::after{
+            transform:  rotate(-135deg);
+            top: 0;
+        }
+    }
+
+    &__icon{
+        margin-top: 3.3rem;
+        @include respond(tab-port){
+            margin-top: 2.6rem;
+        }
+
+        position: relative;
+
+        &,
+        &::before,
+        &::after{
+            display: inline-block;
+            width: 3rem;
+            height: 2.2px;
+            background-color: $color-grey-dark;
+
+            @include respond(tab-port){
+                width: 2.3rem;
+                height: 1.5px;
+            }
+        }
+
+        &::before,
+        &::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .25s; 
+        }
+
+        &::before{ top:-.8rem;}
+        &::after{ top:.8rem;}
+    }
+
+    &__button:hover &__button &__icon{
+        &::before{
+            top: -1rem;
+        }
+        &::after{
+            top: 1rem;
+        }
+    }
+}

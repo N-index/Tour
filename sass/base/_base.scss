@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html{
+    /* 直接硬编码的font-size，对需要调整字体大小的用户不友好。 */
+    /* 所以写成百分数，因为用户的不同，root的font-size不同 */
+    /* This is defined what rem is */
+    // default fontsize 100%=16px
+    font-size: 62.5%;  // 1rem=10px
+
+    // px > 1800
+    @include respond(big-desktop){
+        font-size: 75%; //1rem = 12px
+    }
+    // px < 1200
+    @include respond(tab-land){
+        font-size: 56.25%;  //1rem = 9px
+    }
+    // px < 900
+    @include respond(tab-port){
+        font-size: 50%; //1rem=8px
+    }
+    // px < 600
+    @include respond(phone){
+    }
+
+    scroll-behavior: smooth;
+    
+}
+body{
+    /* box模型设置为border-box以后，margin和padding不计入元素的宽高 */
+    box-sizing: border-box;
+
+    /* leave blank distance from webpage wall */
+    padding: 3rem;
+
+    @include respond(tab-port){
+        padding: 0;
+    }
+}
+
+::selection{
+    background-color: $color-red;
+    color: $color-white;
+    text-decoration: dotted 20px $color-red;
+    border-bottom: dotted 20px $color-white;
+    outline: double 50px $color-primary;
+}

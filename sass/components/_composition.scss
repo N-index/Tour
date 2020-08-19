@@ -1,0 +1,78 @@
+.composition {
+    // width: 100%;    
+    // height:25rem;
+    position: relative;
+
+    &__photo{
+        position: absolute;
+        width: 55%;
+        box-shadow: 0 2rem 4rem rgba($color-black, .4);
+        border-radius: 2px;
+        background-size: cover;
+        background-position: center;
+        z-index: 3;
+        transition: all .3s, outline-offset .8s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+
+        outline: 0 solid $color-blue-grey;
+        outline-offset: 5rem;
+
+        @include respond(tab-port){
+            position: relative;
+            float: left;
+            width: 33.333333%;
+            box-shadow: 0 2rem 3rem rgba($color-black, .2);
+        }
+
+        &--p1{
+            top: -1.5rem;
+            left: 0;
+            @include respond(tab-port){
+                top: 0;
+                transform: scale(1.2);
+            }
+
+        }
+        &--p2{
+            top: 4rem;
+            right: 0;
+            @include respond(tab-port){
+                top: 0;
+                transform: scale(1.3);
+                z-index: 50;
+            }
+        }
+        &--p3{
+            top: 12rem;
+            left: 20%;
+            @include respond(tab-port){
+                top: 0;
+                left: 0;
+                transform: scale(1.2);
+            }
+        }
+
+        &:hover{
+            // outline与border类似，但是不计入length，属于外部点缀
+            outline: 1rem solid $color-blue-grey;
+            outline-offset: 0;
+
+            transform: scale(1.5) translateY(-1rem);
+            box-shadow: 0 3rem 5rem rgba($color-black, .35);
+            z-index: 55;
+            
+            @include respond(tab-port){
+                // width: 55%;
+            }
+        }
+    }
+
+    // 当父元素(3个子元素的并集)处于hover状态时，选中没有被hover的子元素进行变换
+    &:hover &__photo:not(:hover){
+        transform: scale(.9);
+        @include respond(tab-port){
+            // width:27%;
+        }
+        filter: grayscale(92%);
+    }
+
+}

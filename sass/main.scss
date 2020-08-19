@@ -1,0 +1,55 @@
+// define variables, functions, mixins 
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variablses";
+
+// render variables into base css
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/button";
+@import "components/composition";
+@import "components/feature-box";
+@import "components/card";
+@import "components/story";
+@import "components/bg-video";
+@import "components/form";
+@import "components/popup";
+
+@import "layout/header";
+@import "layout/grid";
+@import "layout/footer";
+@import "layout/navigation";
+
+@import "pages/home";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #list{
+//     width:500px;
+//     height: 300px;
+// }
+// #list li{
+//     display:inline-block;
+//     padding-left: 20px;
+//     padding-right:30px;
+//     padding-top: 25px;
+//     padding-bottom: 35px;
+//     margin-top: 25px;
+//     width: 200px;
+//     height: 120px;
+// }
+

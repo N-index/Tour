@@ -1,0 +1,101 @@
+.btn{
+
+    
+
+    /* 初始化btn */
+    &,
+    &:link,
+    &:visited{
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4.5rem;
+        display:inline-block;
+        border-radius: 10rem;
+        transition:all .2s;
+        position: relative;
+
+        // change for button element
+        border: none;
+        cursor: pointer;
+    }
+    &:hover{
+        transform: translateY(-0.5rem);
+        /* params: X，Y, blur, shadow-color */
+        box-shadow: 0 1rem 2rem rgba(34, 49, 51, 0.726);
+        // color:black;
+    
+        /* btn hover状态下after伪类的变化 ,htn hover状态一取消，则after的scale失效 */
+        /* 为什么不是先after 再hover */
+        &::after{
+            transform: scaleX(2) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translateY(-2px);
+        /* 按下按钮的时候，blur减少，颜色加深 */
+        box-shadow: 0 .8rem 1rem rgba(34, 49, 51, 0.8);
+        // color:$color-primary-dark;
+    }
+    &--white{
+        background-color: $color-white;
+        color:$color-grey-dark;
+    
+        &::after{
+            background-color: $color-white;
+        }
+    }
+    &--green{
+        background-color: $color-primary;
+        color:$color-white;
+        &::after{
+            background-color: $color-primary;
+        }
+    }
+    &--animated{
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards;
+    }
+    
+    &::after{
+        content: "";
+        display:inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        position: absolute;
+        top:0;
+        left: 0;
+        //降级
+        z-index: -1;
+        transition:all .3s;
+    }
+
+}
+
+
+.btn-text{
+    &:link,
+    &:visited{
+        display: inline-block;
+        color:$color-primary;
+        font-size: $font-size-default;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding:8px;
+        transition: all .2s;
+    }
+
+    &:hover{
+        color: $color-white;
+        background-color: $color-primary;
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.7);
+    }
+    &:active{
+        transform: translateY(0);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.8);
+    }
+}

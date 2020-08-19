@@ -1,0 +1,52 @@
+
+@keyframes moveInLeft{
+    0%{
+        opacity: 0;
+        transform: translateX(-100px) rotate3d(0,1,0,90deg);
+    }
+    70%{
+        opacity: 0.8;
+        transform: translateX(8px) rotate3d(0,1,0,30deg);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0) rotate3d(0,1,0,0);
+    }
+}
+@keyframes moveInRight{
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    70%{
+        opacity: 0.8;
+        transform: translateX(-8px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes moveInBottom{
+    0%{
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes changeAspect{
+    0%{
+        clip-path: polygon(0 0,100% 0, 100% 85%,0 100%);
+    }
+    100%{
+        clip-path: polygon(0 0,100% 0, 100% 100%,0 85%);
+    }
+}
+
+@keyframes shad-anim {
+    0% {background-position: 0 0}
+    0% {background-position: 100% -100%}
+}

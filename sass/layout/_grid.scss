@@ -1,0 +1,67 @@
+.row{
+    max-width: $grid-width; 
+    
+    @include respond(tab-port){
+        max-width: 90rem;
+        padding: 0 5rem;
+    }
+    @include respond(phone){
+        max-width: 50rem;
+        padding: 0 2rem;
+    }
+
+    
+    margin:0 auto;
+    
+    // 多行
+    &:not(:last-child){
+        margin-bottom: $gutter-vertical;
+        @include respond(tab-port){
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    @include clearfix;
+
+    // 每个row里的最后一个col没有margin-right
+    [class^="col-"]{
+        float: left;
+
+        &:not(:last-child){
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-port){
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
+        }
+        // 屏幕宽度小于等于tab-port的时候，每列宽度占100%
+        @include respond(tab-port){
+            width: 100% !important;
+        }
+    }
+    // width写为100%的作用：
+    // 当view width变化的时候，子元素的width也跟着改变，达到一定的响应式功能。
+    .col-1-of-2{
+        width: calc( ( 100% - #{$gutter-horizontal} ) / 2 );
+    }
+    .col-1-of-3{
+        width: calc( ( 100% - 2*#{$gutter-horizontal} ) / 3 );
+    }
+    .col-1-of-4{
+        width: calc( ( 100% - 3*#{$gutter-horizontal} ) / 4 );
+    }
+    .col-2-of-3{
+        width: calc( (( 100% - 2*#{$gutter-horizontal} ) / 3) * 2 + #{$gutter-horizontal} );
+    }
+    .col-2-of-4{
+        width: calc( (( 100% - 3*#{$gutter-horizontal} ) / 4) * 2 + #{$gutter-horizontal} );
+    }
+    .col-3-of-4{
+        width: calc( (( 100% - 3*#{$gutter-horizontal} ) / 4) * 3 + 2 * #{$gutter-horizontal} );
+    }
+
+}
+
+
+

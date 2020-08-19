@@ -1,0 +1,150 @@
+body{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: $color-black;
+
+   
+}
+// H1
+.heading-primary{
+    padding: 2rem;
+    border-radius: 3rem;
+  
+    text-shadow: 1.5rem 3rem 3rem rgba($color-grey-dark,.4);
+    text-align: justify;
+    color: $color-white;
+
+    //小CASE：解决动画抖动等问题，第一次看到有作者这么坦白："虽然不知道这句话有什么用，but it does work!"
+    backface-visibility: hidden;
+    transition: all .3s ease-in;
+
+
+    // H1大标题
+    &--main{
+        /* block是为了换行 */
+        display: block;
+        // color:$color-black;
+        //审美：font-size/font-weight ↑ , 则看起来很高级。
+        font-size:6rem;
+        text-transform: uppercase;
+        // 字母间距是手动调试出来的，令我不耻。应该就说传说中的“脏”
+        letter-spacing: 3.1rem;
+
+        @include respond(phone){
+            letter-spacing: 1.1rem;
+            font-size: 4.2rem;
+        }
+
+      
+        animation: moveInLeft 1.5s linear;
+        // animation-iteration-count: infinite;
+        // animation-fill-mode: forwards;
+    }
+    // H1副标题
+    &--sub{
+        /* block是为了换行 */
+        display: block;
+
+        font-size:2.5rem;
+        font-weight: 400;
+        letter-spacing: 1.2rem;
+        animation: moveInRight 1.5s;
+        text-align: center;
+        @include respond(phone){
+            letter-spacing: .2rem;
+            font-size: 2rem;
+        }
+    }
+}
+
+.heading-secondary{
+    position: relative;
+
+    @include respond(tab-port){
+        width: 90%;
+    }
+    text-shadow: .3rem .4rem 0 rgba($color-grey-dark,.3);
+    text-transform: uppercase;
+    transition: all .3s;
+    
+    // background-color:rgba($color-grey-light-2,.7);
+    // color: $color-red;
+    color: $color-blue-grey;
+
+    z-index: 2;
+
+    @include respond(tab-port){
+        letter-spacing: .3rem;
+        margin-top: 2rem;
+    }
+
+    &,
+    &::after{
+        display: inline-block;
+        font-size: 4rem;
+        font-weight: 900;
+        padding: .5rem 2rem;
+        border-radius: 4rem;   
+        @include respond(tab-port){
+            font-size: 3rem;
+        } 
+        @include respond(phone){
+            font-size: 2.5rem;
+        }
+    }
+
+    &::after{
+        content: attr(data-shadow);
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-shadow: none;
+        background-image:  linear-gradient(
+            45deg,
+            transparent 45%,
+            rgb(219, 227, 241) 45%,
+            rgb(241, 248, 201) 55%,
+            transparent 0
+        );
+        z-index: 1;
+
+        background-size: 20rem 20rem;
+        background-clip: text;
+        -webkit-background-clip: text;
+
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: shad-anim 30s linear infinite;
+    }
+    
+    &:hover{      
+        // skewY是绕中心点旋转、skewX是左右倾斜。
+        // transform: skewX(35deg) skewY(-7deg) scale(1.05);
+        // text-shadow: .3rem .3rem 0 rgba($color-grey-dark,.7);
+    }
+
+        // Font color gradient
+        // background-image: linear-gradient(
+        //     to bottom right, 
+        //     $color-red,
+        //     $color-tertiary-light
+        // );
+        // // 背景覆盖区域
+        // background-clip: text;
+        // -webkit-background-clip: text;
+        // color: transparent;
+}
+
+.heading-tertiary{
+    font-size:$font-size-default;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.paragraph{
+    font-size:$font-size-default;
+    &:not(:last-child){
+        margin-bottom: 3rem;
+    }
+}

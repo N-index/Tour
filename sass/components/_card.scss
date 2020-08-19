@@ -1,0 +1,272 @@
+.card{
+
+    // 观察者距离屏幕的距离
+    perspective: 1500rem;
+    -moz-perspective: 1500rem;
+
+    position: relative;
+
+
+    //如果不设置高度，那么因其子元素都为absolute，所以card元素便为空。组件结构便会塌方。
+    //如果定高，那么页面缩放过度的时候，内容也会塌方。。
+    height: 53rem;
+
+    // 前后两面共同的配置
+    &__side {
+
+        // 撑起父元素
+        height: 53rem;
+        transition: all .8s ease;
+
+        // 重合布局前后面
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        // 背面不可见
+        backface-visibility: hidden;
+        border-radius: 30px;
+        overflow: hidden;
+
+        border-bottom: 3px;
+        box-shadow:0 3rem 5.5rem rgba($color-black,.35);
+ 
+        &--front{
+            background-color: $color-white;
+        }
+
+        // 背面初始情况
+        &--back{
+            transform: rotateY(-180deg);
+            &-1{
+                background-image: 
+                    linear-gradient(
+                        to right bottom, 
+                        $color-secondary-light, 
+                        $color-secondary-dark);
+            }
+            &-2{
+                background-image: 
+                    linear-gradient(
+                        to right bottom, 
+                        $color-primary-light, 
+                        $color-primary-dark);
+            }
+            &-3{
+                background-image: 
+                    linear-gradient(
+                        to right bottom, 
+                        $color-tertiary-light, 
+                        $color-tertiary-dark);
+            }
+        }
+    }
+
+    &:hover &__side--front{
+        transform: rotateY(180deg);
+    }
+    &:hover &__side--back{
+        transform: rotateY(0);
+    }
+
+    // Front side styling
+    &__picture{
+        height: 45%;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+
+        background-blend-mode: screen;
+
+        clip-path: polygon(0 0,100% 0, 100% 85%,0 100%);
+        -webkit-clip-path: polygon(0 0,100% 0, 100% 85%,0 100%);
+
+        &--1{
+            background-image: 
+                    linear-gradient(
+                        to right bottom, 
+                        rgba( $color-secondary-light,.75),
+                        rgba( $color-secondary-dark,.75)    
+                       ),
+                    url(../img/nat-5.jpg);
+        }
+        &--2{
+            background-image: 
+                    linear-gradient(
+                        to right bottom, 
+                        $color-primary-light, 
+                        $color-primary-dark),
+                    url(../img/nat-6.jpg);
+        }
+        &--3{
+            background-image: 
+                    linear-gradient(
+                        to right bottom, 
+                        $color-tertiary-light, 
+                        $color-tertiary-dark),
+                    url(../img/nat-7.jpg);
+        }
+    }
+
+    &__heading{
+        position: absolute;
+        top:15rem;
+        right:3rem;
+
+        //设置短宽度以换行
+        width: 60%;
+
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+    }
+
+    &__heading-span{
+        padding:1rem 1.5rem;
+
+        // 即使换行，H4默认被视为1行，“A”右侧和“E”的左侧没有padding，设置clone以后，则以2行看待。
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        &--1{
+            background-image: 
+            linear-gradient(
+                to right bottom,
+                rgba($color-secondary-light,.6),
+                rgba($color-secondary-dark,.6)
+            );
+        }
+        &--2{
+            background-image: 
+            linear-gradient(
+                to right bottom,
+                rgba($color-primary-light,.6),
+                rgba($color-primary-dark,.6)
+            );
+        }
+        &--3{
+            background-image: 
+            linear-gradient(
+                to right bottom,
+                rgba($color-tertiary-light,.6),
+                rgba($color-tertiary-dark,.6)
+            );
+        }
+    }
+
+    &__details{
+        padding:3rem;
+        ul{
+            list-style: none;
+            width: 80%;
+            margin: 0 auto;
+
+            li{
+                text-align: center;
+                font-size: 1.5rem;
+                padding:1rem;
+
+                &:not(:last-child){
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+    &__cta{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 90%;
+        text-align:center;
+    }
+
+    &__price-box{
+        text-align:center;
+        color: $color-white;
+        margin-bottom:8rem;
+    }
+
+    &__price-only{
+        font-size:1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    &__price-value{
+        font-size: 6rem;
+        font-weight: 200;
+    }
+
+
+
+    // In the default condition:
+    // 1. mobile device = touch = no hover = small width screen,
+    // 2. desktop device = no touch = hover = big width screen.
+    // Except:
+    // 1. Some touch big screen devices just like ipad and huge screen displayed in the hall. 
+    
+    // Create a wide coverage media query, overwrite specified attributes with value.
+    // 简言之：1.只要是小屏幕，不管是不是触屏，全部展开显示。2.大屏设备里，还要兼容触屏设备
+    @media only screen and (max-width:56.25em),
+           only screen and (hover:none){
+        height: auto;
+        // background-color: $color-white;
+        box-shadow:0 3rem 5.5rem rgba($color-black,.35);
+        background-color: $color-white;
+        border-radius: 3px;
+
+        // 前后两面共同的配置
+        &__side {
+
+            // 撑起父元素
+            height: auto;
+
+            position: relative;
+            border-radius: 3px;
+            box-shadow: none;
+
+            // 背面初始情况
+            &--back{
+                transform: rotateY(0);
+
+                clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+                -webkit-clip-path: polygon(0 15%,100% 0, 100% 100%, 0 100%); 
+            }
+        }
+
+        //重写为hover后不旋转。不能省略
+        &:hover &__side--front{
+            transform: rotateY(0);
+        }
+
+
+        // Front side styling
+        &__picture{
+            height: 30rem;
+        }
+
+        &__cta{
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: translate(0);
+            width: 100%;
+            padding: 8rem 4rem 4rem 4rem;                               
+        }
+
+        &__price-box{
+            margin-bottom:3rem;
+        }
+
+        &__price-only{
+            font-size:1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        &__price-value{
+            font-size: 6rem;
+        }
+    }
+}

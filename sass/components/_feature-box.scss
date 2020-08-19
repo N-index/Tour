@@ -1,0 +1,43 @@
+.feature-box{
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+
+
+    text-align: center;
+
+    
+    background-color: rgba($color-white, 0.95);
+    font-size: 1.6rem;
+    transition: all .2s;
+
+    // clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+
+    //对每个单独的 feature-box进行旋转反而得到不错的效果。位置摆平而且、高低层次有区分。
+    // transform: skewY(7deg);
+
+    &__icon{
+        display: inline-block;
+        font-size: 5rem;
+        margin-bottom: .5rem;
+
+        background-image: 
+            linear-gradient(
+                to right bottom, 
+                $color-tertiary-light, 
+                $color-tertiary-dark
+            );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    &__text{
+        // text-align: center;
+    }
+
+    &:hover{
+        transform: translateY(-1.5rem) scale(1.1);
+    }
+}

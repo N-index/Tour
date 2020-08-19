@@ -1,0 +1,144 @@
+.story{
+    width: 75%;
+   
+    margin: 0 auto;
+    box-shadow: 0 1.5rem 3rem rgba($color-black,.3);
+    background-image: linear-gradient(
+        to right,
+        rgba($color-grey-light-1,.8),
+        rgba($color-grey-light-2,.8)
+    );
+
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $font-size-default;
+
+    //向右扭动12°
+    transform: skewX(-12deg);
+    // 一：使用clip-path限制元素的形状
+    // 二：skewX对元素进行扭转
+    // 刚开始的时候，我觉得clip-path好用, 觉得skewX是小tricks上不了台面不是一个标准化解决方案。
+    // 现在发现skewX对元素border-radius的展现比clip-path要好。
+    border-radius: 15px;
+
+    @include respond(phone){
+        width: 95%;
+        transform: skewX(0);
+        padding: 3rem;
+        padding-left: 5rem;
+    }
+
+    @include respond(phone){
+        width: 90%;
+        transform: skewX(0);
+        padding: 3rem;
+        padding-left: 5rem;
+    }
+
+    &__shape{
+        position: relative; //for figcaption
+
+        width: 13rem;
+        height: 13rem;
+
+        float: left; 
+
+        // 外形
+        shape-outside:circle(50% at 50% 50%);
+        -webkit-shape-outside:circle(50% at 50% 50%);
+
+        // 形状
+        clip-path: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        // border-radius: 50%; 效果一样
+
+
+        // 左移30px，与文字保持距离。 12deg自旋保持直立
+        transform: translateX(-3rem) skewX(12deg);
+        @include respond(phone){
+            transform: translateX(-3rem) skewX(0);
+        }
+
+        // 莫名其妙hover的时候出现小细线，此举解决
+        overflow: hidden;
+        backface-visibility: hidden;
+    }
+
+      &__img{
+          width: 100%;
+          transform: scale(1);
+          transition: all .5s ease;
+          backface-visibility: hidden;
+      }
+
+      &__text{
+          transform: skewX(12deg);
+          @include respond(phone){
+            transform: skewX(0);
+          }
+      }
+
+      &__caption{
+          position: absolute;
+          top:50%;
+          left: 50%;
+          z-index: 2;
+
+
+          color: $color-white;
+          text-transform: uppercase;
+          font-size: 2rem;
+          text-align: justify;
+          transition: all .3s ease;
+
+          opacity: 0;
+          visibility: hidden;
+          transform: translate(-50%,20%);
+          backface-visibility: hidden;
+      }
+
+    &:hover &__caption{
+        visibility: visible;
+        transform: translate(-50%,-50%);
+        opacity: 1;
+        color: $color-black;
+    }
+
+    &:hover &__img{
+        transform: scale(1.3);
+        filter: blur(3px) brightness(65%) ;
+    }
+
+
+    &__mask{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(0,-50%);
+
+        text-transform: uppercase;
+        font-size: 2rem;
+        text-align: center;
+        transition: all .3s ease;
+
+        opacity: 0;
+        backface-visibility: hidden;
+
+        background-color: rgba($color-white,.75);
+
+        width: 110%;
+        height: 8rem;
+        z-index: 1;
+
+        @include respond(phone){
+            font-size: .5rem;
+        }
+    }
+
+    &:hover &__mask{
+        transform: translate(-50%,-50%);
+        opacity: 1;
+    }    
+}
+
+
