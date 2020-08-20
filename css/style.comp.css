@@ -27,7 +27,8 @@ html {
   /* 直接硬编码的font-size，对需要调整字体大小的用户不友好。 */
   /* 所以写成百分数，因为用户的不同，root的font-size不同 */
   /* This is defined what rem is */
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
   @media only screen and (min-width: 112.5em) {
     html {
       font-size: 75%; } }
@@ -175,8 +176,6 @@ body {
     color: transparent;
     -webkit-text-fill-color: transparent;
     animation: shad-anim 30s linear infinite; }
-  .heading-secondary:hover {
-    text-shadow: 0.3rem 0.3rem 0 rgba(119, 119, 119, 0.7); }
 
 .heading-tertiary {
   font-size: 1.6rem;
@@ -805,20 +804,20 @@ body {
   z-index: 1;
   height: 95vh;
   position: relative;
-  background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.5), rgba(123, 45, 248, 0.3)), url(../img/hero-small.jpg);
+  background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.3), rgba(123, 45, 248, 0.3)), url(../img/header-bg-default.jpg);
   background-blend-mode: screen;
   /* whatever viewport changed, img always try to fit the screen; */
   background-size: cover;
   /* decide which part of img will be cropped out when viewport changing. */
-  background-position: top;
+  background-position: center;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
   @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-radio: 2) and (min-width: 37.5em), only screen and (min-width: 125em) {
     .header {
-      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.5), rgba(123, 45, 248, 0.3)), url(../img/hero.jpg); } }
+      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.5), rgba(123, 45, 248, 0.3)), url(../img/header-bg-large.jpg); } }
   @media (max-width: 37.5em) {
     .header {
-      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.5), rgba(123, 45, 248, 0.3)), url(../img/hero-small-phone.jpg); } }
+      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.5), rgba(123, 45, 248, 0.3)), url(../img/header-bg-small.jpg); } }
   @media only screen and (max-width: 56.25em) {
     .header {
       clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
@@ -847,7 +846,7 @@ body {
     transition-duration: 2s;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); }
   .header__logo:hover {
-    transform: translate(-50%, -50%) rotate(3600deg); }
+    transform: translate(-50%, -50%) rotate(360deg); }
   .header__text-box {
     position: absolute;
     top: 40%;
@@ -859,12 +858,6 @@ body {
       .header__text-box {
         top: 45%;
         left: 50%; } }
-    .header__text-box .like {
-      display: block;
-      width: 30rem;
-      margin: 0 auto;
-      animation: moveInRight 3s cubic-bezier(0.23, 1, 0.32, 1);
-      filter: grayscale(0.5); }
 
 .row {
   max-width: 120rem;

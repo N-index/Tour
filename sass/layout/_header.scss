@@ -6,17 +6,17 @@
     // Default small jpg  
     background-image: linear-gradient(
             to  right bottom,
-            rgba($color-tertiary-light, 0.5),
+            rgba($color-tertiary-light, 0.3),
             rgba($color-tertiary-dark, 0.3)),
-        url(../img/hero-small.jpg);
+        url(../img/header-bg-default.jpg);
 
     background-blend-mode: screen;
     /* whatever viewport changed, img always try to fit the screen; */
     background-size: cover;
     /* decide which part of img will be cropped out when viewport changing. */
-    background-position: top ;
+    background-position: center;
 
-    // 其他地方的background还没换，留做练习。我就不练了，弄新图麻烦
+    // 其他地方的background还没换
     // 高分屏并且宽度大于600px，使用大图
     // safari:DPR>=2并且宽度大于600px，使用大图
     // 宽度大于2000px的大屏，使用大图
@@ -27,7 +27,7 @@
             to  right bottom,
             rgba($color-tertiary-light, 0.5),
             rgba($color-tertiary-dark, 0.3)),
-        url(../img/hero.jpg);
+        url(../img/header-bg-large.jpg);
     }
   
     // 宽度小于600px的手机屏幕，使用手机专用配图。
@@ -36,7 +36,7 @@
             to  right bottom,
             rgba($color-tertiary-light, 0.5),
             rgba($color-tertiary-dark, 0.3)),
-        url(../img/hero-small-phone.jpg);
+        url(../img/header-bg-small.jpg);
     }
 
 
@@ -77,7 +77,7 @@
         transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
     &__logo:hover{
-        transform: translate(-50%,-50%) rotate(3600deg);
+        transform: translate(-50%,-50%) rotate(360deg);
     }
     &__text-box{
         position: absolute;
@@ -90,14 +90,6 @@
         @include respond(phone){
             top: 45%;
             left: 50%;
-        }
-
-        .like{
-            display: block;
-            width: 30rem;
-            margin: 0 auto;
-            animation: moveInRight 3s cubic-bezier(0.23, 1, 0.320, 1) ;
-            filter: grayscale(.5);
         }
     }
 }
